@@ -1,0 +1,107 @@
+.App {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.workspace-item h3 {
+  margin: 5px 0;
+}
+
+nav {
+  flex-grow: 1; /* Ensure the nav takes up remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Reset margin for proper alignment */
+  flex-grow: 1; /* Ensure the ul takes up remaining space */
+}
+
+nav li {
+  padding: 10px 0;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.attendance {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.attendance h2 {
+  margin-top: 0;
+}
+
+.import-button,
+.save-button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: #673ab7;
+}
+
+.search-container {
+  margin: 20px 0;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.attendance-table th {
+  background-color: #eee;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
