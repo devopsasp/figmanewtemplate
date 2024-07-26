@@ -1,114 +1,99 @@
-// src/EmployeeDetails.js
 import React from "react";
-import "./EmployeeDetails.css";
+import {
+  Container,
+  Typography,
+  Grid,
+  TextField,
+  Button,
+  Box,
+} from "@mui/material";
 
 const EmployeeDetails = () => {
   return (
-    <div className="container">
-      <h2 className="center">Employee Details</h2>
-      <hr />
-      <h3 className="center">Enter Employee Details</h3>
-      <div className="form-container">
-        <div className="form-row">
-          <div className="form-group">
-            <label>Employee Code</label>
-            <input type="text" placeholder="Employee code" />
-          </div>
-          <div className="form-group">
-            <label>Emp First Name</label>
-            <input type="text" placeholder="Emp First Name" />
-          </div>
-          <div className="form-group">
-            <label>Emp Middle Name</label>
-            <input type="text" placeholder="Emp Middle Name" />
-          </div>
-          <div className="form-group">
-            <label>Emp Last Name</label>
-            <input type="text" placeholder="Emp Last Name" />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>DateOfBirth</label>
-            <input type="date" placeholder="DOB" />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" placeholder="Password" />
-          </div>
-          <div className="form-group">
-            <label>Gender</label>
-            <input type="text" placeholder="Gender" />
-          </div>
-          <div className="form-group">
-            <label>Status</label>
-            <input type="text" placeholder="Status" />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Emp Full Name</label>
-            <input type="text" placeholder="Emp Full Name" />
-          </div>
-          <div className="form-group">
-            <label>Reader Id</label>
-            <input type="text" placeholder="Reader Id" />
-          </div>
-          <div className="form-group">
-            <label>OT Eligible</label>
-            <input type="text" placeholder="OT Eligible" />
-          </div>
-          <div className="form-group">
-            <label>PF No</label>
-            <input type="text" placeholder="PF No" />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>ESI No</label>
-            <input type="text" placeholder="ESI No" />
-          </div>
-          <div className="form-group">
-            <label>Basic Salary</label>
-            <input type="text" placeholder="Basic Salary" />
-          </div>
-          <div className="form-group">
-            <label>Bank Code</label>
-            <input type="text" placeholder="Bank Code" />
-          </div>
-          <div className="form-group">
-            <label>Bank Name</label>
-            <input type="text" placeholder="Bank Name" />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>IFSC Code</label>
-            <input type="text" placeholder="IFSC Code" />
-          </div>
-          <div className="form-group">
-            <label>Address</label>
-            <input type="text" placeholder="Address" />
-          </div>
-          <div className="form-group">
-            <label>PAN No</label>
-            <input type="text" placeholder="PAN No" />
-          </div>
-          <div className="form-group">
-            <label>Salary Type</label>
-            <input type="text" placeholder="Salary Type" />
-          </div>
-        </div>
-        <div className="add-more">
-          <button>+ Add More Fields</button>
-        </div>
-        <div className="form-actions">
-          <button className="save-btn">Save</button>
-          <button className="cancel-btn">Cancel</button>
-          <button className="reset-btn">Reset</button>
-        </div>
-      </div>
-    </div>
+    <Container maxWidth="md" sx={{ padding: "10px" }}>
+      <Box
+        sx={{
+          border: 2,
+          borderRadius: 2,
+          borderColor: "grey.300",
+          p: 6,
+          boxShadow: 1,
+          mt: 18,
+          width: {
+            xs: "100%",
+            sm: "100%", // Full width on small screens
+            md: "800px", // Fixed width on medium screens and up
+            lg: "1000px", // Fixed width on large screens and up
+          },
+        }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Employee Details
+        </Typography>
+        <Box
+          sx={{
+            border: 1,
+            borderRadius: 1,
+            borderColor: "grey.300",
+            p: 2,
+            mt: 2,
+          }}>
+          <Typography variant="h6" align="left" gutterBottom>
+            Enter Employee Details
+          </Typography>
+          <Grid container spacing={2} mt={2}>
+            {[
+              "Employee Code",
+              "Emp First Name",
+              "Emp Middle Name",
+              "Emp Last Name",
+              "Date Of Birth",
+              "Password",
+              "Gender",
+              "Status",
+              "Emp Full Name",
+              "Reader Id",
+              "OT Eligible",
+              "PF No",
+              "ESI No",
+              "Basic Salary",
+              "Bank Code",
+              "Bank Name",
+              "IFSC Code",
+              "Address",
+              "PAN No",
+              "Salary Type",
+            ].map((label, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <TextField label={label} variant="outlined" fullWidth />
+              </Grid>
+            ))}
+          </Grid>
+          <Box display="flex" justifyContent="flex-start" mt={2}>
+            <Button variant="outlined" color="primary" sx={{ mr: 2 }}>
+              + Add More Fields
+            </Button>
+          </Box>
+
+          <Grid container spacing={2} mt={2} justifyContent="flex-end">
+            <Grid item>
+              <Button variant="contained" color="success">
+                Save
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="error">
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="info">
+                Reset
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

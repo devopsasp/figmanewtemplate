@@ -87,7 +87,12 @@ const LoginPage = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <ImageContainer>
-              <StyledImage src={loginImage} alt="Login Illustration" />
+              <StyledImage
+                src={loginImage}
+                width={450}
+                height={400}
+                alt="Login Illustration"
+              />
             </ImageContainer>
           </Grid>
           <Grid item xs={12} md={6}>

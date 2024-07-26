@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,10 +10,8 @@ import {
   Button,
   Checkbox,
   Box,
-  Badge,
   IconButton,
   Grid,
-  TextField,
   Typography,
 } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
@@ -22,9 +20,10 @@ const data = [
   {
     name: "Priya",
     policy: "Annual Leave",
-    status: "Approved",
+    status: "Pending",
     request: "Nov 22 - Nov 23",
     reason: "I need this leave",
+    applyDate: "Nov 01, 2023",
   },
   {
     name: "Khaviya",
@@ -32,20 +31,23 @@ const data = [
     status: "Pending",
     request: "Oct 12 - Oct 15",
     reason: "I got Sick",
+    applyDate: "Oct 10, 2023",
   },
   {
     name: "Vishnu",
     policy: "Client Visit",
-    status: "Rejected",
+    status: "Pending",
     request: "Nov 24 - Nov 29",
     reason: "I have client Meeting",
+    applyDate: "Nov 15, 2023",
   },
   {
     name: "Sanjeevi",
     policy: "Sick Leave",
-    status: "Approved",
+    status: "Pending",
     request: "Oct 1 - Oct 2",
     reason: "I've got Fever",
+    applyDate: "Sep 29, 2023",
   },
   {
     name: "Lalli",
@@ -53,26 +55,38 @@ const data = [
     status: "Pending",
     request: "Oct 19 - Oct 20",
     reason: "I need this leave",
+    applyDate: "Oct 05, 2023",
   },
 ];
 
 const statusColors = {
   Approved: "green",
-  Pending: "yellow",
+  Pending: "orange",
   Rejected: "red",
 };
 
 function LeaveRequest() {
+  const [checkedRows, setCheckedRows] = useState({});
+
+  const handleCheckboxChange = (event, index) => {
+    setCheckedRows((prev) => ({
+      ...prev,
+      [index]: event.target.checked,
+    }));
+  };
+
+  const anyCheckboxChecked = Object.values(checkedRows).some(Boolean);
+
   return (
     <Box p={2}>
       <Box display="flex" justifyContent="stretch" alignItems="center" mb={2}>
         <Button variant="contained" color="primary">
-          New Request{" "}
+          New Request
         </Button>
       </Box>
       <Grid
-        display={"flex"}
-        justifyContent={"stretch"}
+        display="flex"
+        justifyContent="stretch"
         style={{
           background: "blue",
           height: "40px",
@@ -85,12 +99,12 @@ function LeaveRequest() {
         <IconButton style={{ color: "whitesmoke" }}>
           <FilterList />
         </IconButton>
-        <Typography textAlign={"center"} sx={{ paddingTop: "10px" }}>
+        <Typography textAlign="center" sx={{ paddingTop: "10px" }}>
           Filter Leave Request
         </Typography>
       </Grid>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ marginTop: 2 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -100,13 +114,18 @@ function LeaveRequest() {
               <TableCell>Status</TableCell>
               <TableCell>Request</TableCell>
               <TableCell>Reason</TableCell>
+              <TableCell>Apply Date</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <Checkbox />
+                  <Checkbox
+                    checked={!!checkedRows[index]}
+                    onChange={(event) => handleCheckboxChange(event, index)}
+                  />
                 </TableCell>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.policy}</TableCell>
@@ -127,6 +146,24 @@ function LeaveRequest() {
                 </TableCell>
                 <TableCell>{row.request}</TableCell>
                 <TableCell>{row.reason}</TableCell>
+                <TableCell>{row.applyDate}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    size="small"
+                    disabled={anyCheckboxChecked}
+                    sx={{ marginRight: 1 }}>
+                    Approve
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    disabled={anyCheckboxChecked}>
+                    Reject
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -134,13 +171,14 @@ function LeaveRequest() {
       </TableContainer>
 
       <Grid sx={{ textAlign: "right", padding: "20px" }}>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" enable={anyCheckboxChecked}>
           Approve
         </Button>
         <Button
           variant="contained"
           color="error"
-          style={{ marginLeft: "10px" }}>
+          style={{ marginLeft: "10px" }}
+          enable={anyCheckboxChecked}>
           Reject
         </Button>
       </Grid>

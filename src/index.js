@@ -8,10 +8,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LeaveRequest from "./LeaveRequest";
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
-import LeaveTravelPermissions from "./LeaveTravelPermissions";
 import EmployeeDetails from "./EmployeeDetails";
 import Company from "./Company";
 import ShiftDetails from "./ShiftDetails";
+import Attendance from "./Attendance";
+import LeaveApply from "./LeaveApply";
+import LeaveEmployee from "./LeaveEmployee";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -22,6 +24,9 @@ root.render(
           <Route path="/IntegrationPage" element={<IntegrationPage />} />
           <Route path="/LeaveRequest" element={<LeaveRequest />} />
           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Attendance" element={<Attendance />} />
+          <Route path="/LeaveApply" element={<LeaveApply />} />
+          <Route path="/LeaveEmployee" element={<LeaveEmployee />} />
           {/* <Route
             path="/LeaveTravelPermission"
             element={<LeaveTravelPermissions />}

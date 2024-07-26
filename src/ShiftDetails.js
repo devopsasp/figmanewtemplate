@@ -1,5 +1,23 @@
 import React, { useState } from "react";
-import "./ShiftDetails.css";
+import {
+  Container,
+  Typography,
+  Button,
+  TextField,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Paper,
+  Box,
+} from "@mui/material";
+
 function ShiftDetails() {
   const [shifts, setShifts] = useState([
     {
@@ -36,76 +54,92 @@ function ShiftDetails() {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <h2>Add Shift Deatils</h2>
-        <button className="button" onClick={handleAddShift}>
-          Add +
-        </button>
-      </div>
-      <div className="form-group">
-        <label htmlFor="shift-name">Shift Name</label>
-        <input
-          type="text"
-          id="shift-name"
-          name="shift-name"
-          placeholder="Name"
-        />
-      </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Pattern Code</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Unpaid Break</th>
-            <th>Net Payable Hours</th>
-          </tr>
-        </thead>
-        <tbody>
-          {shifts.map((shift, index) => (
-            <tr key={index}>
-              <td>
-                <select
-                  value={shift.patternCode}
-                  onChange={(e) =>
-                    handleChange(index, "patternCode", e.target.value)
-                  }>
-                  <option value="">Name</option>
-                </select>
-              </td>
-              <td>
-                <input
-                  type="time"
-                  value={shift.startTime}
-                  onChange={(e) =>
-                    handleChange(index, "startTime", e.target.value)
-                  }
-                />
-              </td>
-              <td>
-                <input
-                  type="time"
-                  value={shift.endTime}
-                  onChange={(e) =>
-                    handleChange(index, "endTime", e.target.value)
-                  }
-                />
-              </td>
-              <td>
-                <button
-                  className="button"
-                  onClick={() => handleChange(index, "unpaidBreak", "Add")}>
-                  Add
-                </button>
-              </td>
-              <td>{shift.netPayableHours}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button className="button">Add Shift</button>
-    </div>
+    <Container sx={{ marginTop: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Add Shift Details
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleAddShift}
+        sx={{ mb: 2, backgroundColor: "#2196f3" }} // Custom blue color
+      >
+        Add +
+      </Button>
+      <Box sx={{ mb: 2 }}>
+        <FormControl fullWidth>
+          <TextField label="Shift Name" placeholder="Name" />
+        </FormControl>
+      </Box>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Pattern Code</TableCell>
+              <TableCell>Start Time</TableCell>
+              <TableCell>End Time</TableCell>
+              <TableCell>Unpaid Break</TableCell>
+              <TableCell>Net Payable Hours</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {shifts.map((shift, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <FormControl fullWidth>
+                    <InputLabel>Pattern Code</InputLabel>
+                    <Select
+                      value={shift.patternCode}
+                      onChange={(e) =>
+                        handleChange(index, "patternCode", e.target.value)
+                      }>
+                      <MenuItem value="">Name</MenuItem>
+                      {/* Add more options as needed */}
+                    </Select>
+                  </FormControl>
+                </TableCell>
+                <TableCell>
+                  <TextField
+                    type="time"
+                    value={shift.startTime}
+                    onChange={(e) =>
+                      handleChange(index, "startTime", e.target.value)
+                    }
+                  />
+                </TableCell>
+                <TableCell>
+                  <TextField
+                    type="time"
+                    value={shift.endTime}
+                    onChange={(e) =>
+                      handleChange(index, "endTime", e.target.value)
+                    }
+                  />
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleChange(index, "unpaidBreak", "Add")}
+                    sx={{ backgroundColor: "#2196f3" }} // Custom blue color
+                  >
+                    Add
+                  </Button>
+                </TableCell>
+                <TableCell>{shift.netPayableHours}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ mt: 2, backgroundColor: "#2196f3" }} // Custom blue color
+      >
+        Add Shift
+      </Button>
+    </Container>
   );
 }
 
